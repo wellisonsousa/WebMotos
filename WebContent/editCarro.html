@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Carro | Crud de carros</title>
+    </head>
+    <body>
+        <form id="edit-form">
+            <div>
+                <label for="carro-id">Id da carro</label>
+                <input name="carro-id" type="text">
+            </div>
+            <div>
+                <label for="carro-name">Nome da carro</label>
+                <input name="carro-name" type="text">
+            </div>
+            <div>
+                <label for="carro-color">Cor da carro</label>
+                <input name="carro-color" type="text">
+            </div>
+            <div>
+                <label for="carro-brand">Marca da carro</label>
+                <input name="carro-brand" type="text">
+            </div>
+
+            <input id="edit-submit" type="submit" value="enviar"/>
+        </form>
+
+        <script>
+            window.onload = (function () {
+                myForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    var formData = new FormData(this);
+
+                    fetch('WebController', {
+                        method: 'put'
+                    }).then(function (e) {
+                        alert('atualizado com sucesso!!');
+                    }).catch(function () {
+                        alert('erro ao atualizar');
+                    });
+                })
+            });
+            var myForm = document.getElementById('edit-form');
+        </script>
+    </body>
+</html>

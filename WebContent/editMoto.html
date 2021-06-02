@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Moto | Crud de motos</title>
+    </head>
+    <body>
+        <form id="edit-form">
+            <div>
+                <label for="moto-id">Id da moto</label>
+                <input name="moto-id" type="text">
+            </div>
+            <div>
+                <label for="moto-name">Nome da moto</label>
+                <input name="moto-name" type="text">
+            </div>
+            <div>
+                <label for="moto-color">Cor da moto</label>
+                <input name="moto-color" type="text">
+            </div>
+            <div>
+                <label for="moto-brand">Marca da moto</label>
+                <input name="moto-brand" type="text">
+            </div>
+
+            <input id="edit-submit" type="submit" value="enviar"/>
+        </form>
+
+        <script>
+            window.onload = (function () {
+                myForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    var formData = new FormData(this);
+
+                    fetch('WebController', {
+                        method: 'put'
+                    }).then(function (e) {
+                        alert('atualizado com sucesso!!');
+                    }).catch(function () {
+                        alert('erro ao atualizar');
+                    });
+                })
+            });
+            var myForm = document.getElementById('edit-form');
+        </script>
+    </body>
+</html>

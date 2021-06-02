@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - User</title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User</h1>
+
+    <form method="post" action="UserController">
+        <p>
+            <label for="user-id">ID: </label>
+            <input type="number" id="user-id" name="user-id" required>
+        </p>
+        <p>
+            <label for="user-name">Name: </label>
+            <input type="text" id="user-name" name="user-name" required>
+        </p>
+        <p>
+            <label for="user-email">E-Mail: </label>
+            <input type="email" id="user-email" name="user-email" required>
+        </p>
+        <p>
+            <label for="user-telefone">Phone: </label>
+            <input type="text" id="user-phone" name="user-phone" required>
+        </p>
+        <p>
+            <label for="user-address">Address: </label>
+            <input type="text" id="user-address" name="user-address" required>
+        </p>
+        <input type="submit">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Carro | Crud de carros</title>
+    </head>
+    <body>
+        <div id="carro-container">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nome da Carro</td>
+                        <td>Cor</td>
+                        <td>Nome da Marca</td>
+                    </tr>
+                </thead>
+                <tbody id="carros-table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            window.onload = (function () {
+                    fetch('CarroController', {
+                        method: 'GET'
+                    })
+                    .then(function (response)  {
+                        return response.json();
+                    })
+                    .then(function (response) {
+                        response.forEach(element => {
+
+                            var trElement = document.createElement('tr');
+                            var nameTdElement = document.createElement('td');
+                            nameTdElement.textContent = element.name;
+                            var colorTdElement = document.createElement('td');
+                            colorTdElement.textContent = element.color;
+                            var brandTdElement = document.createElement('td');
+                            brandTdElement.textContent = element.brand;
+
+                            trElement.appendChild(nameTdElement);
+                            trElement.appendChild(colorTdElement);
+                            trElement.appendChild(brandTdElement);
+
+                            document.getElementById('motos-table-body').appendChild(trElement);
+                        });
+                        
+                    }).catch(function (e) {
+                    });
+                });
+        </script>
+    </body>
+</html>
