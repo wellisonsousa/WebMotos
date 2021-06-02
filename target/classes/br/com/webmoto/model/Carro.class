@@ -11,10 +11,10 @@ import java.util.Objects;
 //https://pt.wikipedia.org/wiki/JavaBeans
 
 
-public class Moto {
+public class Carro {
 
 	private long id;
-	public Moto(long id, String name, String brand, String color) {
+	public Carro(long id, String name, String brand, String color) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -26,7 +26,7 @@ public class Moto {
 	    brand,
 	    color;
 	
-	public Moto(String name, String brand, String color) {
+	public Carro(String name, String brand, String color) {
 		super();
 		this.name = name;
 		this.brand = brand;
@@ -62,10 +62,9 @@ public class Moto {
 		
 	}
 	
-
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", brand=" + brand + ", color=" + color + "]";
+		return "Carro [id=" + id + ", name=" + name + ", brand=" + brand + ", color=" + color + "]";
 	}
 
 	@Override
@@ -78,15 +77,12 @@ public class Moto {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Moto)) {
+		if (!(obj instanceof Carro)) {
 			return false;
 		}
-		Moto other = (Moto) obj;
+		Carro other = (Carro) obj;
 		return Objects.equals(color, other.color) && Objects.equals(brand, other.brand) && id == other.id
 				&& Objects.equals(name, other.name);
 	}
-	
-	
-	
 	
 }

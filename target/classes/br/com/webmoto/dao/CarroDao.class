@@ -7,26 +7,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.webmoto.model.Moto;
+import br.com.webmoto.model.Carro;
 import br.com.webmoto.util.DBUtil;
 
-public class MotoDao {
+public class CarroDao {
 
     private Connection connection;
 
-    public MotoDao() {
+    public CarroDao() {
         connection = DBUtil.getConnection();
     }
 
-    public void addMoto(Moto moto) {
+    public void addCarro(Carro carro) {
         
     	try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO MOTO (NAME, BRAND, COLOR) VALUES (?, ?, ?)");
+                    .prepareStatement("INSERT INTO CARRO (NAME, BRAND, COLOR) VALUES (?, ?, ?)");
           
-            preparedStatement.setString(1, moto.getName());
-            preparedStatement.setString(2, moto.getBrand());
-            preparedStatement.setString(3, moto.getColor());
+            preparedStatement.setString(1, carro.getName());
+            preparedStatement.setString(2, carro.getBrand());
+            preparedStatement.setString(3, carro.getColor());
 
             
             preparedStatement.executeUpdate();
@@ -34,61 +34,61 @@ public class MotoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    } //addUser
+    }
     
-    public void deleteMoto(Long id) {
+    public void deleteCarro(Long id) {
     	
-    	Moto moto = new Moto();
-    	moto.setId(id);
+    	Carro carro = new Carro();
+    	carro.setId(id);
     	
-    	deleteMoto(moto);
+    	deleteCarro(carro);
     	
-    } // deleteUser long
+    }
 
-    public void deleteMoto(Moto user) {
+    public void deleteMoto(Moto moto) {
         try {
             
         	PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM MOTO WHERE ID=?");
+                    .prepareStatement("DELETE FROM CARRO WHERE ID=?");
             
             // Parameters start with 1
-            preparedStatement.setLong(1, user.getId());
+            preparedStatement.setLong(1, moto.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    } //deleteUser
+    } 
 
-    public void updateMoto(Moto moto) {
+    public void updateCarro(Carro moto) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE MOTO SET NAME=?, " 
+                    .prepareStatement("UPDATE CARRO SET NAME=?, " 
                     		                          + "BRAND=?, " 
                     		                          + "COLOR=? " 
                                                + "WHERE ID=?");
             
             // Parameters start with 1
-            preparedStatement.setString(1, moto.getName());
-            preparedStatement.setString(2, moto.getBrand());
-            preparedStatement.setString(3, moto.getColor());
+            preparedStatement.setString(1, carro.getName());
+            preparedStatement.setString(2, carro.getBrand());
+            preparedStatement.setString(3, carro.getColor());
             
-            preparedStatement.setLong(4, moto.getId());
+            preparedStatement.setLong(4, carro.getId());
             
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    } //updateUser
+    } 
 
-    public List<Moto> getAllMotos() {
+    public List<Carro> getAllCarros() {
         
-    	List<Moto> motoList = new ArrayList<Moto>();
+    	List<Carro> carroList = new ArrayList<Carro>();
         
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM MOTO");
+            ResultSet rs = statement.executeQuery("SELECT * FROM CARRO");
             while (rs.next()) {
                 
             	Moto moto = new Moto();
@@ -98,42 +98,40 @@ public class MotoDao {
             	moto.setBrand(rs.getString("BRAND"));
             	moto.setColor(rs.getString("COLOR"));
 
-            	motoList.add(moto);
+            	carroList.add(moto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return motoList;
-    } //getAllUser
+    } 
 
-    public Moto getMotoById(Long id) {
+    public Carro getMotoById(Long id) {
     	
-    	Moto moto = new Moto();
-    	moto.setId(id);
+    	Carro carro = new Carro();
+    	carro.setId(id);
     	
-    	return getMotoById(moto);
+    	return getCarroById(carro);
     	
-    } // getUserById long
-    
-    
+    } 
     	
-    public Moto getMotoById(Moto moto) {
+    public Carro getCarroById(Carro carro) {
 
-    	Moto motoOutput = new Moto();
+    	Carro carroOutput = new Carro();
         
     	try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("SELECT * from MOTO WHERE ID=?");
+                    prepareStatement("SELECT * from CARRO WHERE ID=?");
             
             preparedStatement.setLong(1, moto.getId());
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-            	motoOutput.setId(rs.getLong("ID"));
-            	motoOutput.setName(rs.getString("NAME"));
-            	motoOutput.setBrand(rs.getString("BRAND"));
-            	motoOutput.setColor(rs.getString("COLOR"));
+            	carroOutput.setId(rs.getLong("ID"));
+            	carroOutput.setName(rs.getString("NAME"));
+            	carroOutput.setBrand(rs.getString("BRAND"));
+            	carroOutput.setColor(rs.getString("COLOR"));
             }
             
         } catch (SQLException e) {
@@ -141,7 +139,7 @@ public class MotoDao {
         }
 
         return motoOutput;
-    } //getUserById
+    }
     
     public String getDbDate() {
 
@@ -162,6 +160,6 @@ public class MotoDao {
         }
 
         return output;
-    } //getDbDate
+    } 
     
 } 

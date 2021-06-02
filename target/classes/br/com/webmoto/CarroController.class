@@ -1,4 +1,4 @@
-package br.com.webmoto;
+package br.com.webcarro;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import br.com.webmoto.dao.MotoDao;
-import br.com.webmoto.model.Moto;
+import br.com.webcarro.dao.CarroDao;
+import br.com.webcarro.model.Carro;
 
 
 /**
- * Servlet implementation class MotoController
+ * Servlet implementation class CarroController
  */
-@WebServlet("/MotoController")
-public class MotoController extends HttpServlet {
+@WebServlet("/CarroController")
+public class CarroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MotoController() {
+    public CarroController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +34,13 @@ public class MotoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MotoDao motoDao = new MotoDao();
+		CarroDao carroDao = new CarroDao();
 		
-		List<Moto> motosList = motoDao.getAllMotos();
+		List<Carro> carrosList = carroDao.getAllCarros();
 		
 		Gson gson = new Gson();
 		
-		String json = gson.toJson(motosList);
+		String json = gson.toJson(carrosList);
 		
 		// TODO Auto-generated method stub
 		response.getWriter().append(json);
@@ -50,15 +50,15 @@ public class MotoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Moto u = new Moto(
-				request.getParameter("moto-name"),
-				request.getParameter("moto-brand"),
-				request.getParameter("moto-color")
+		Carro u = new Carro(
+				request.getParameter("carro-name"),
+				request.getParameter("carro-brand"),
+				request.getParameter("carro-color")
 				);
 		
-		MotoDao motoDao = new MotoDao();
+		CarroDao carroDao = new CarroDao();
 		
-		motoDao.addMoto(u);
+		carroDao.addCarro(u);
 		
 		response.getWriter().append(u.toString());
 	}
@@ -67,18 +67,18 @@ public class MotoController extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Moto moto = new Moto(
-				Long.parseLong(request.getParameter("moto-id")),
-				request.getParameter("moto-name"),
-				request.getParameter("moto-brand"),
-				request.getParameter("moto-color")
+		Carro carro = new Carro(
+				Long.parseLong(request.getParameter("carro-id")),
+				request.getParameter("carro-name"),
+				request.getParameter("carro-brand"),
+				request.getParameter("carro-color")
 				);
 		
-		MotoDao motoDao = new MotoDao();
+		CarroDao carroDao = new CarroDao();
 		
-		motoDao.updateMoto(moto);
+		carroDao.updateCarro(carro);
 		
-		response.getWriter().append(moto.toString());
+		response.getWriter().append(carro.toString());
 	}
 
 	/**
@@ -87,11 +87,11 @@ public class MotoController extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		long motoId = Long.parseLong(request.getParameter("moto-id"));
+		long carroId = Long.parseLong(request.getParameter("carro-id"));
 		
-		MotoDao motoDao = new MotoDao();
+		CarroDao carroDao = new CarroDao();
 		
-		motoDao.deleteMoto(motoId);
+		carroDao.deleteCarro(carroId);
 		
 		response.getWriter().append("Success");
 	}
